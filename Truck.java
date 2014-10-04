@@ -19,7 +19,7 @@ public class Truck {
 	// Actions
 	public void setup() {
 		x = Zen.getRandomNumber(-500, -100);
-		speed = Zen.getRandomNumber(3, 8);
+		speed = Zen.getRandomNumber(2, 5);
 		lane = Zen.getRandomNumber(0, 5);
 	}
 
