@@ -15,9 +15,23 @@ public class BrickBreaker {
 
 		int brickX = 50;
 		while (brickX < 500) {
-			Brick br = new Brick(brickX, 200);
+			Brick br = new Brick(brickX, 300);
 			bricks.add(br);
 			brickX = brickX + 50;
+		}
+
+		int tBrickX = 50;
+		while (tBrickX < 500) {
+			toughBrick tbr = new toughBrick(tBrickX, 100);
+			bricks.add(tbr);
+			tBrickX = tBrickX + 50;
+		}
+
+		int mBrickX = 50;
+		while (mBrickX < 500) {
+			movingBrick mbr = new movingBrick(mBrickX, 200);
+			bricks.add(mbr);
+			mBrickX = mBrickX + 100;
 		}
 
 		while (true) {
@@ -30,11 +44,24 @@ public class BrickBreaker {
 
 			// draw every brick
 
-			for (Brick br : bricks) {
-				br.draw();
+			for (int i = 0; i < bricks.size(); i++) {
+
+				if (bricks.get(i).isTouching(b) && bricks.get(i).health <= 0) {
+					bricks.remove(i);
+					b.dy = -b.dy;
+
+					i--;
+				}
+				else if (bricks.get(i).isTouching(b)){
+					b.dy = -b.dy;
+				}
+				else {
+					bricks.get(i).draw();
+					bricks.get(i).move();
+				}
 			}
 
-			if (b.isTouching(p)) {
+			if (p.isTouching(b)) {
 				b.dy = -b.dy;
 			}
 
