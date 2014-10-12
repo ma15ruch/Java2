@@ -12,20 +12,20 @@ public class Ball {
 	public Ball(){
 		x = 250;
 		y = 700;
-		dx = Zen.getRandomNumber(-5, 5);
-		dy = Zen.getRandomNumber(-8, -5);
+		dx = Zen.getRandomNumber(-8, 8);
+		dy = Zen.getRandomNumber(-10, -8);
 	}
 	public void draw() {
 		Zen.setColor("black");
-		Zen.fillOval(x, y, 30, 30);
+		Zen.fillOval(x-10, y-10, 20, 20);
 	}
 
 	public void move() {
 		x = x + dx;
 		y = y + dy;
 
-		if (x > 470) {
-			x = 470;
+		if (x > 490) {
+			x = 490;
 			dx = -dx;
 		}
 
@@ -39,11 +39,4 @@ public class Ball {
 			dy = -dy;
 		}
 	}
-	public boolean isTouching(Paddle p) {
-		if (Math.abs(p.x - x) < 50 && Math.abs(p.y - y) < 30) {
-			return true;
-		}
-		return false;
-	}
-
 }
