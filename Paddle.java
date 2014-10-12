@@ -5,15 +5,15 @@ import zen.core.Zen;
 public class Paddle {
 	int x;
 	int y;
-	
+
 	public Paddle() {
 		x = 250;
-		y = 760;
+		y = 750;
 	}
 
 	public void draw() {
 		Zen.setColor("red");
-		Zen.fillRect(x - 50, y, 100, 20);
+		Zen.fillRect(x - 50, y, 100, 10);
 	}
 
 	public void move() {
@@ -23,12 +23,14 @@ public class Paddle {
 		if (Zen.isKeyPressed("left")) {
 			x = x - 10;
 		}
-		
-		if (x > 450) {
-			x = 450;
+	}
+
+	public boolean isTouching(Ball b) {
+		if (Math.abs(b.x - x) < 55 && Math.abs(b.y - y) < 15) {
+
+			b.dx = Zen.getRandomNumber(-8, 8);
+			return true;
 		}
-		if (x < 50) {
-			x = 50;
-		}
+		return false;
 	}
 }
